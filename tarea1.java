@@ -3,7 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
-
+package tarea1;
 public class tarea1 {
 		
     public static void main(String[] args) {
@@ -58,9 +58,16 @@ public class tarea1 {
         System.out.println();
       }
     }
-     	public class contenedor(){
+     	
+}
+
+
+
+public class contenedor(){
      		public int valor;
      		public int cantidad[];
  				public boolean variables[];
+ 				public contenedor(boolean variables[],int costo[]){
+
+ 				}
      }
-}
