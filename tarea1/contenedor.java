@@ -4,9 +4,4 @@ public class Contenedor(){
      		public int cantidad[];
  			public boolean variables[];
 
- 			public contenedor(boolean variables[],int costo[]){
- 					// implementar un metodo que segun las variables entrantes y el costo calcule la combinacion mas barata
-
- 			
- 				}
      }
