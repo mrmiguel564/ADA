@@ -3,8 +3,8 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
-package tarea1;
-public class tarea1 {
+
+public class Tarea1 {
 		
     public static void main(String[] args) {
         int numeroEntero, sumaInt = 0;
