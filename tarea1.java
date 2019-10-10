@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class tarea1 {
-
+		
     public static void main(String[] args) {
         int numeroEntero, sumaInt = 0;
         double numeroDouble, sumaDouble = 0;
@@ -58,4 +58,9 @@ public class tarea1 {
         System.out.println();
       }
     }
+     	public class contenedor(){
+     		public int valor;
+     		public int cantidad[];
+ 				public boolean variables[];
+     }
 }
