@@ -27,6 +27,7 @@ public class Comparador{
 				if(restriciones[i][j]==true){   //si contiene 1 (true) 
 					if(restriciones[i][j]==vectorFactible[j]){   //se verifica si es que vectorFactible tenga true
 						factible=true; //si cumple la restriccion, ya que la sumatoria es >=1
+						break;
 					}
 				}
 				j++;
