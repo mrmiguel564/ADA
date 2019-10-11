@@ -3,9 +3,10 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
-package tarea1;
+//package tarea1;
+
 public class tarea1 {
-		
+
     public static void main(String[] args) {
         int numeroEntero, sumaInt = 0;
         double numeroDouble, sumaDouble = 0;
@@ -40,7 +41,16 @@ public class tarea1 {
   				    }
   			}
 
-        mostrarRestricciones(restriciones,nRestri,nMatriz);
+        //mostrarRestricciones(restriciones,nRestri,nMatriz);
+
+        //----------ESTA ES UNA DEMOSTRACION PARA QUE VEAS COMO FUNCIONA---------------
+        Comparador comp=new Comparador(costo,restriciones,nRestri,nMatriz);  //CLASE COMPARADOR
+        boolean vectorDePrueba[]={true,true,true,true,true,true};   //VECTOR QUE CONTIENE UNA POSIBLE SOLUCION
+        if(comp.esFactible(vectorDePrueba)){ // si es factible dame la funcion minimizada de esta solucion
+          System.out.println("Es factible este vector?: "+true);
+          System.out.println("El valor minimo para esta solucion es: "+comp.minimizar(vectorDePrueba));
+        }
+        //-------------------------------------------------------------------------------
 
         } catch (FileNotFoundException e) {
             System.out.println(e.toString());
@@ -51,23 +61,14 @@ public class tarea1 {
 
     public static void mostrarRestricciones(boolean restriciones[][],int nRestri,int nMatriz){
       for (int i=0;i<nRestri;i++) {
-        for (int j=0;i<nMatriz;j++) {
+        for (int j=0;j<nMatriz;j++) {
           System.out.print(restriciones[i][j]);
           System.out.print(" ");
         }
         System.out.println();
       }
     }
-     	
+    
+    
+
 }
-
-
-
-public class contenedor(){
-     		public int valor;
-     		public int cantidad[];
- 				public boolean variables[];
- 				public contenedor(boolean variables[],int costo[]){
-
- 				}
-     }
