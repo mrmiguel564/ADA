@@ -51,12 +51,11 @@ public class Main {
 
     public static void mostrarRestricciones(boolean restriciones[][],int nRestri,int nMatriz){
       for (int i=0;i<nRestri;i++) {
-        for (int j=0;i<nMatriz;j++) {
+        for (int j=0;j<nMatriz;j++) {
           System.out.print(restriciones[i][j]);
           System.out.print(" ");
         }
         System.out.println();
       }
     }
-     	
 }
