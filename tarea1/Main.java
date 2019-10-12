@@ -31,30 +31,27 @@ public class Main {
                 if(ayuda){System.out.print(costo[i]+" ");}
   			    }
             if(ayuda)System.out.println("]");
-
+        int arradidad[]= new int[nRestri];
   			for(int i=0;i<nRestri;i++) {  //ultima para tomar las restricciones
-               int arradidad = entrada.nextInt(); // sirve para detenernos en cada restriccion
-               if(ayuda)System.out.println("aridad: "+arradidad);
-              for(int j=0;j<arradidad;j++) {
-                int wea = entrada.nextInt(); //guarda las variables activas en las restricciones
-                if(ayuda)System.out.print(" "+wea);
-                restriciones[i][wea-1]=true; // nuestras restriciones
-  				    }
-              if(ayuda)System.out.println();
+          arradidad[i]=entrada.nextInt(); // sirve para detenernos en cada restriccion
+          if(ayuda)System.out.println("aridad: "+arradidad[i]);
+               
+          for(int j=0;j<arradidad[i];j++) {
+            int wea = entrada.nextInt(); //guarda las variables activas en las restricciones
+            if(ayuda)System.out.print(" "+wea);
+              restriciones[i][wea-1]=true; // nuestras restriciones
+  				  }
+            if(ayuda)System.out.println();
   			}
 
         //mostrarRestricciones(restriciones,nRestri,nMatriz);
         //----------ESTA ES UNA DEMOSTRACION PARA QUE VEAS COMO FUNCIONA---------------
-        Comparador comp=new Comparador(costo,restriciones,nRestri,nMatriz);  //CLASE COMPARADOR
-        boolean solucion[]= new boolean[nMatriz];
+        Comparador comp=new Comparador(arradidad,costo,restriciones,nRestri,nMatriz);  //CLASE COMPARADOR
+ 
         boolean solucionFinal[]= new boolean[nMatriz];
-        Backtacking(nMatriz, comp ,solucion ,0, solucionFinal);
-        boolean vectorDePrueba[]={false,true,false,true,false,true};  // VECTOR QUE CONTIENE UNA POSIBLE SOLUCION
+        ArrayList<Boolean> solucion = new ArrayList<Boolean>();
 
-        if(comp.esFactible(vectorDePrueba)){ // si es factible dame la funcion minimizada de esta solucion
-          System.out.println("Es factible este vector?: "+true);
-          System.out.println("El valor minimo para esta solucion es: "+comp.minimizar(vectorDePrueba));
-        }
+        Backtacking(nMatriz, comp, solucion, 0, solucionFinal);
 
         //-------------------------------------------------------------------------------
 
@@ -75,16 +72,26 @@ public class Main {
       }
     }
     
-    public static void Backtacking(int nMatriz ,Comparador comp,boolean solucion[], int etapa,boolean solucionFinal[] ){
+    public static void Backtacking(int nMatriz ,Comparador comp, ArrayList<Boolean> solucion, int etapa,boolean solucionFinal[] ){
     boolean i=false;
     int condition=0;
     if (etapa>nMatriz) return;
     do{
-      solucion[etapa]=i;
+      if(condition==0){
+        solucion.add(etapa,i);
+      }else{
+        solucion.set(etapa,i);
+      }
+
+      imprimirArray(solucion);
+    
       if(comp.esFactible(solucion)){
+
         if(etapa==nMatriz-1){
+          
           //actualizarSolucion
         }else{
+          
           Backtacking(nMatriz, comp ,solucion, etapa+1, solucionFinal);
     
         }
@@ -92,13 +99,16 @@ public class Main {
       }
       condition++;
       i=true;
-      for (int j=0;j<etapa;j++) {
-          System.out.print("asdasd"+solucion[j]);
-        }
-         System.out.println();
       }while(condition!=1);
 
   }
 
+  public static void imprimirArray (ArrayList<Boolean> lista){
+   
+        for(int i=0;i<lista.size();i++){
+            System.out.print("\t"+lista.get(i));
+        }
+        System.out.println();
+    }
 
 }

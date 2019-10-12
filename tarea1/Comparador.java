@@ -1,9 +1,11 @@
+import java.util.List;
+import java.util.ArrayList;
 public class Comparador{
 	
 	//ATRIBUTOS
 	//vectores y matrices
 	private boolean restriciones[][];
-	private int costo[];
+	private int costo[],arradidad[];
 
 
 	//largos
@@ -12,39 +14,41 @@ public class Comparador{
 	//test de arbol
 	private Comparador[] hijo[];
 	//contructor
-	public Comparador(int costo[], boolean restriciones[][], int nRestri, int nMatriz){
+	public Comparador(int arradidad[],int costo[], boolean restriciones[][], int nRestri, int nMatriz){
 		this.costo=costo; //vector de costos
 		this.restriciones=restriciones;  //matriz de restricciones
 		this.nRestri=nRestri;
 		this.nMatriz=nMatriz;
 		this.nArbol=nMatriz-1;
+		this.arradidad=arradidad;
 	}
-	
 
 
-	public boolean esFactible(boolean vectorFactible[]){ //veremos si la solucion es factible
-		int i=0,j=0;  // para la matriz son: i filas (restricciones) , j columnas (variables)
-		//para el vector: j es variable (verificando si esta activa o no)
+	public boolean esFactible(ArrayList<Boolean> vectorFactible){ //veremos si la solucion es factible
+		int i=0;// para la matriz son: i filas (restricciones) , j columnas (variables)
+					//para el vector: j es variable (verificando si esta activa o no)
+		while(i<nRestri ){
+			int count=0;
+			int j=0;
+			boolean factible=true; //se utilizara para saber si es factible con la restriccion actual
+			
+			while(j<vectorFactible.size()){
 
-		do{
-			j=0; //se reinicia el contador de j
-			boolean factible=false; //se utilizara para saber si es factible con la restriccion actual
-			do{
-				if(restriciones[i][j]==true){   //si contiene 1 (true) 
-					if(restriciones[i][j]==vectorFactible[j]){   //se verifica si es que vectorFactible tenga true
-						factible=true; //si cumple la restriccion, ya que la sumatoria es >=1
-						break;
+				if(restriciones[i][j]==true){//si contiene 1 (true)
+					if(!(boolean)vectorFactible.get(j)){   //se verifica si es que vectorFactible tenga true
+						count++;
+						if(count==arradidad[i]){ // si se encuentran todas las resticiones no satifacidas, no es solucion
+
+						return false;
+						}
 					}
 				}
+
 				j++;
-			}while(j<nMatriz);
-
-			if(factible==false){ //aqui pregunto: ¿mi solucion vectorFactible fue satisfacio la restriccion?
-				return false; //en caso de que no retorno false
-			}
-
+			} //antes nMatriz
+			
 			i++; 
-		}while(i<nRestri);
+		}
 		
 		return true; //si termine el ciclo, significa que fue factible para todas las restricciones
 	}
