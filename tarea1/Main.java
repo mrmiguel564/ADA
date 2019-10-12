@@ -40,7 +40,16 @@ public class Main {
   				    }
   			}
 
-        mostrarRestricciones(restriciones,nRestri,nMatriz);
+        //mostrarRestricciones(restriciones,nRestri,nMatriz);
+
+        //----------ESTA ES UNA DEMOSTRACION PARA QUE VEAS COMO FUNCIONA---------------
+        Comparador comp=new Comparador(costo,restriciones,nRestri,nMatriz);  //CLASE COMPARADOR
+        boolean vectorDePrueba[]={true,true,true,true,true,true};   //VECTOR QUE CONTIENE UNA POSIBLE SOLUCION
+        if(comp.esFactible(vectorDePrueba)){ // si es factible dame la funcion minimizada de esta solucion
+          System.out.println("Es factible este vector?: "+true);
+          System.out.println("El valor minimo para esta solucion es: "+comp.minimizar(vectorDePrueba));
+        }
+        //-------------------------------------------------------------------------------
 
         } catch (FileNotFoundException e) {
             System.out.println(e.toString());
@@ -58,4 +67,7 @@ public class Main {
         System.out.println();
       }
     }
+    
+    
+
 }
