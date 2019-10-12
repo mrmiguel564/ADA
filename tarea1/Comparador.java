@@ -5,16 +5,22 @@ public class Comparador{
 	private boolean restriciones[][];
 	private int costo[];
 
-	//largos
-	private int nRestri, nMatriz; //nRes seria filas , nMat seria columnas
 
+	//largos
+	private int nRestri, nMatriz, nArbol; //nRes seria filas , nMat seria columnas
+
+	//test de arbol
+	private Comparador[] hijo[];
 	//contructor
 	public Comparador(int costo[], boolean restriciones[][], int nRestri, int nMatriz){
 		this.costo=costo; //vector de costos
 		this.restriciones=restriciones;  //matriz de restricciones
 		this.nRestri=nRestri;
 		this.nMatriz=nMatriz;
+		this.nArbol=nMatriz-1;
 	}
+	
+
 
 	public boolean esFactible(boolean vectorFactible[]){ //veremos si la solucion es factible
 		int i=0,j=0;  // para la matriz son: i filas (restricciones) , j columnas (variables)
