@@ -12,7 +12,7 @@ public class Main {
         int numeroEntero, sumaInt = 0;
         double numeroDouble, sumaDouble = 0;
 
-        File f = new File("scp1.txt");
+        File f = new File("scp41.txt");
 
         try  (Scanner entrada = new Scanner(f)) {
         	int nRestri = entrada.nextInt();
@@ -46,15 +46,27 @@ public class Main {
 
         //mostrarRestricciones(restriciones,nRestri,nMatriz);
         //----------ESTA ES UNA DEMOSTRACION PARA QUE VEAS COMO FUNCIONA---------------
-        Comparador comp=new Comparador(arradidad,costo,restriciones,nRestri,nMatriz);  //CLASE COMPARADOR
- 
-        boolean solucionFinal[]= new boolean[nMatriz];
-        ArrayList<Boolean> solucion = new ArrayList<Boolean>();
+       // Comparador comp=new Comparador(arradidad,costo,restriciones,nRestri,nMatriz);  //CLASE COMPARADOR
+      //  ArrayList<Boolean> temp = new ArrayList<Boolean>();
+      //  temp.add(true);
+      //  temp.add(true);
+      //  temp.add(true);
+      //  temp.add(true);
+      //  temp.add(true);
+      ///  temp.add(true);
+      //  temp.add(true);
+      //  temp.add(true);
+      //  temp.add(true);
+      //  temp.add(true);
 
-        Backtacking(nMatriz, comp, solucion, 0, solucionFinal);
+      //  if(comp.esFactible(temp))System.out.println("pichula");
 
+
+
+        Backtacking back = new Backtacking(nMatriz, new Comparador(arradidad,costo,restriciones,nRestri,nMatriz), new ArrayList<Boolean>(), 0, new boolean[nMatriz],0);
+        back.start();
         //-------------------------------------------------------------------------------
-        mostrarRestricciones(restriciones,nRestri,nMatriz);
+        // mostrarRestricciones(restriciones,nRestri,nMatriz);
 
         } catch (FileNotFoundException e) {
             System.out.println(e.toString());
@@ -73,35 +85,11 @@ public class Main {
       }
     }
     
-    public static void Backtacking(int nMatriz ,Comparador comp, ArrayList<Boolean> solucion, int etapa,boolean solucionFinal[] ){
-    if (etapa>nMatriz) break;
-    do{ solucion.add(etapa,true);
-        
-        solucion.add(etapa,false);
-        
-
-        imprimirArray(solucion);
-    
-        if(comp.esFactible(solucion)){
-
-        if(etapa==nMatriz-1){
-          
-          //actualizarSolucion
-        }else{
-          
-          Backtacking(nMatriz, comp ,solucion, etapa+1, solucionFinal);    
-        }
-      }
-      condition++;
-      i=true;
-      }while(condition!=1);
-
-  }
 
   public static void imprimirArray (ArrayList lista){
    
         for(int i=0;i<lista.size();i++){
-            System.out.print("\t"+lista.get(i));-+-+
+            System.out.print("\t"+lista.get(i));
         }
         System.out.println();
     }
