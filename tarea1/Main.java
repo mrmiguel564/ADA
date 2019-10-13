@@ -73,15 +73,11 @@ public class Main {
     }
     
     public static void Backtacking(int nMatriz ,Comparador comp, ArrayList<Boolean> solucion, int etapa,boolean solucionFinal[] ){
-    boolean i=false;
-    int condition=0;
     if (etapa>nMatriz) break;
-    do{
-        if(condition==0){
-            solucion.add(etapa,i);
-        }else{
-            solucion.set(etapa,i);
-        }
+    do{ solucion.add(etapa,true);
+        
+        solucion.add(etapa,false);
+        
 
         imprimirArray(solucion);
     
