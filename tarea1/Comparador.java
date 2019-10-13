@@ -31,7 +31,7 @@ public class Comparador{
 					}
 				}
 				j++;
-			}while(j<nMatriz);
+			}while(j<vectorFactible.length); //antes nMatriz
 
 			if(factible==false){ //aqui pregunto: ¿mi solucion vectorFactible fue satisfacio la restriccion?
 				return false; //en caso de que no retorno false
