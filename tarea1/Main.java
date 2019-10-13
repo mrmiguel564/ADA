@@ -54,6 +54,7 @@ public class Main {
         Backtacking(nMatriz, comp, solucion, 0, solucionFinal);
 
         //-------------------------------------------------------------------------------
+        mostrarRestricciones(restriciones,nRestri,nMatriz);
 
         } catch (FileNotFoundException e) {
             System.out.println(e.toString());
