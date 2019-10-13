@@ -75,27 +75,25 @@ public class Main {
     public static void Backtacking(int nMatriz ,Comparador comp, ArrayList<Boolean> solucion, int etapa,boolean solucionFinal[] ){
     boolean i=false;
     int condition=0;
-    if (etapa>nMatriz) return;
+    if (etapa>nMatriz) break;
     do{
-      if(condition==0){
-        solucion.add(etapa,i);
-      }else{
-        solucion.set(etapa,i);
-      }
+        if(condition==0){
+            solucion.add(etapa,i);
+        }else{
+            solucion.set(etapa,i);
+        }
 
-      imprimirArray(solucion);
+        imprimirArray(solucion);
     
-      if(comp.esFactible(solucion)){
+        if(comp.esFactible(solucion)){
 
         if(etapa==nMatriz-1){
           
           //actualizarSolucion
         }else{
           
-          Backtacking(nMatriz, comp ,solucion, etapa+1, solucionFinal);
-    
+          Backtacking(nMatriz, comp ,solucion, etapa+1, solucionFinal);    
         }
-
       }
       condition++;
       i=true;
@@ -103,10 +101,10 @@ public class Main {
 
   }
 
-  public static void imprimirArray (ArrayList<Boolean> lista){
+  public static void imprimirArray (ArrayList lista){
    
         for(int i=0;i<lista.size();i++){
-            System.out.print("\t"+lista.get(i));
+            System.out.print("\t"+lista.get(i));-+-+
         }
         System.out.println();
     }
