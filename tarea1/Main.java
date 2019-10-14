@@ -44,23 +44,12 @@ public class Main {
             if(ayuda)System.out.println();
   			}
 
-        //mostrarRestricciones(restriciones,nRestri,nMatriz);
-        //----------ESTA ES UNA DEMOSTRACION PARA QUE VEAS COMO FUNCIONA---------------
-       // Comparador comp=new Comparador(arradidad,costo,restriciones,nRestri,nMatriz);  //CLASE COMPARADOR
-    //    ArrayList<Boolean> temp = new ArrayList<Boolean>();
-    //    temp.add(false);
-    //    temp.add(true);
-    //    temp.add(false);
-    //    temp.add(true);
-    //    temp.add(false);
-    //    temp.add(false);
-
-
-
         Comparador comp = new Comparador(arradidad,costo,restriciones,nRestri,nMatriz);
      //   if(comp.esFactible(temp))System.out.println("pichulita");
-        Backtacking back = new Backtacking(nMatriz, comp, new ArrayList<Boolean>(), 0, new boolean[nMatriz],0);
-        back.start(0);
+        Backtacking back = new Backtacking(nMatriz, comp);
+        back.start(0,false,new ArrayList<Boolean>());
+        back.start(0,true,new ArrayList<Boolean>());
+
         System.out.println("costo minimo :\t"+comp.bestcandidato);
         System.out.println("best vector :\t"+comp.bestvector);
         //-------------------------------------------------------------------------------
