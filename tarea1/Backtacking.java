@@ -7,34 +7,35 @@ public class Backtacking{
     ArrayList<Boolean> solucion;
     int etapa;
     boolean solucionFinal[]; 
-    ArrayList<Boolean> weas;
+    ArrayList<Boolean> temp;
     int mejor_costo;
+
     public Backtacking(int nMatriz ,Comparador comp, ArrayList<Boolean> solucion, int etapa, boolean solucionFinal[],int mejor_costo ){
         this.nMatriz=nMatriz;;
         this.comp=comp;
-        this.solucion=solucion;
         this.etapa=etapa;
         this.solucionFinal=solucionFinal;
         this.mejor_costo=mejor_costo;
+        temp = new ArrayList<Boolean>();
+        for(int i=0;i<nMatriz;i++){
+
+            temp.add(true);
+
+        }
+        this.solucion = new ArrayList<Boolean>(temp);
 }
 
-public void start(){
-
-    if (etapa<nMatriz){
-        
-        solucion.add(etapa,false);
+public void start(int etapa){
+    if (etapa<nMatriz){        
+        solucion.set(etapa,false);
         if(comp.esFactible(solucion)){
             if(solucion.size()==nMatriz){ // NODO FINAL FACTIBLE
-                if(comp.minimizar(solucion)<comp.bestcandidato){
-                    System.out.println("por la chucha");
-                    comp.bestcandidato=comp.minimizar(solucion);
-                    comp.bestvector=solucion;
-                }
+                comp.comparar(solucion);
                 //idear como guardar la wea 
             }else{
                                            // NODO POSIBLE FACTIBLE
-            Backtacking back = new Backtacking(nMatriz, comp ,solucion, etapa+1, solucionFinal, mejor_costo); 
-            back.start();
+           // Backtacking back = new Backtacking(nMatriz, comp ,solucion, etapa+1, solucionFinal, mejor_costo); 
+            start(etapa+1);
             //
 
             }
@@ -42,22 +43,16 @@ public void start(){
     
           solucion.set(etapa,true);
         if(comp.esFactible(solucion)){
-            if(solucion.size()==nMatriz){ // NODO FINAL FACTIBLE
-                if(comp.minimizar(solucion)<comp.bestcandidato){
-                    comp.bestcandidato=comp.minimizar(solucion);
-                    comp.bestvector=solucion;
-                }
-                //idear como guardar la wea 
+            if(solucion.size()==nMatriz){ 
+                comp.comparar(solucion);
             }else{
                                            // NODO POSIBLE FACTIBLE
-            Backtacking back = new Backtacking(nMatriz, comp ,solucion, etapa+1, solucionFinal,mejor_costo); 
-            back.start();
+           // Backtacking back = new Backtacking(nMatriz, comp ,solucion, etapa+1, solucionFinal,mejor_costo); 
+            start(etapa+1);
             //
 
             }
         }
-    System.out.println("vector final:\t"+comp.bestvector+"\ncosto minimo :\t"+comp.bestcandidato);
-    
     }
 }
 

@@ -12,7 +12,7 @@ public class Main {
         int numeroEntero, sumaInt = 0;
         double numeroDouble, sumaDouble = 0;
 
-        File f = new File("scp41.txt");
+        File f = new File("scp1.txt");
 
         try  (Scanner entrada = new Scanner(f)) {
         	int nRestri = entrada.nextInt();
@@ -47,24 +47,22 @@ public class Main {
         //mostrarRestricciones(restriciones,nRestri,nMatriz);
         //----------ESTA ES UNA DEMOSTRACION PARA QUE VEAS COMO FUNCIONA---------------
        // Comparador comp=new Comparador(arradidad,costo,restriciones,nRestri,nMatriz);  //CLASE COMPARADOR
-      //  ArrayList<Boolean> temp = new ArrayList<Boolean>();
-      //  temp.add(true);
-      //  temp.add(true);
-      //  temp.add(true);
-      //  temp.add(true);
-      //  temp.add(true);
-      ///  temp.add(true);
-      //  temp.add(true);
-      //  temp.add(true);
-      //  temp.add(true);
-      //  temp.add(true);
-
-      //  if(comp.esFactible(temp))System.out.println("pichula");
+    //    ArrayList<Boolean> temp = new ArrayList<Boolean>();
+    //    temp.add(false);
+    //    temp.add(true);
+    //    temp.add(false);
+    //    temp.add(true);
+    //    temp.add(false);
+    //    temp.add(false);
 
 
 
-        Backtacking back = new Backtacking(nMatriz, new Comparador(arradidad,costo,restriciones,nRestri,nMatriz), new ArrayList<Boolean>(), 0, new boolean[nMatriz],0);
-        back.start();
+        Comparador comp = new Comparador(arradidad,costo,restriciones,nRestri,nMatriz);
+     //   if(comp.esFactible(temp))System.out.println("pichulita");
+        Backtacking back = new Backtacking(nMatriz, comp, new ArrayList<Boolean>(), 0, new boolean[nMatriz],0);
+        back.start(0);
+        System.out.println("costo minimo :\t"+comp.bestcandidato);
+        System.out.println("best vector :\t"+comp.bestvector);
         //-------------------------------------------------------------------------------
         // mostrarRestricciones(restriciones,nRestri,nMatriz);
 
