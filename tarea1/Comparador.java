@@ -40,8 +40,8 @@ public boolean esFactible(ArrayList<Boolean> vectorFactible){ //veremos si la so
 			}	
 			if(count==arradidad[i])factible=false; 	// si se encuentra una restricion no satifecha, no es solucion y no lo sera nunca							
 		}
-	if(factible)System.out.println("F :"+ vectorFactible);
-	if(!factible)System.out.println("N :"+ vectorFactible);
+	//if(factible)System.out.println("F :"+ vectorFactible);
+	//if(!factible)System.out.println("N :"+ vectorFactible);
 	return factible; //si termine el ciclo, significa que fue factible para todas las restricciones
 }
 

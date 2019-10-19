@@ -13,11 +13,15 @@ public class Backtacking{
 public void start(int etapa, boolean combinacion, ArrayList<Boolean> solucion){
     solucion.add(etapa,combinacion);
     if(comp.esFactible(solucion)){
-        if(comp.estaraTodos(solucion)){             
+        if(comp.estaraTodos(solucion)){ 
+           System.out.println(solucion);
+
             comp.comparar(solucion);                               
         }else{
-            start(etapa+1,false,solucion);
-            start(etapa+1,true,solucion);
+            ArrayList<Boolean> solucion1=new ArrayList<Boolean>(solucion);
+            ArrayList<Boolean> solucion2=new ArrayList<Boolean>(solucion);
+            start(etapa+1,false,solucion1);
+            start(etapa+1,true,solucion2);
         }
     }
 }

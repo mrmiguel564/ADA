@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class Main {
 		
     public static void main(String[] args) {
-        boolean ayuda=true; //estado para los printf
+        boolean ayuda=false; //estado para los printf
 
         int numeroEntero, sumaInt = 0;
         double numeroDouble, sumaDouble = 0;
 
-        File f = new File("scp1.txt");
+        File f = new File("scp41.txt");
 
         try  (Scanner entrada = new Scanner(f)) {
         	int nRestri = entrada.nextInt();
