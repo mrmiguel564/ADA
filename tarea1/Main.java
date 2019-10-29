@@ -47,9 +47,16 @@ public class Main {
         Comparador comp = new Comparador(arradidad,costo,restriciones,nRestri,nMatriz);
      //   if(comp.esFactible(temp))System.out.println("pichulita");
         Backtacking back = new Backtacking(nMatriz, comp);
+
+        long tInicio, tFin, tiempo; //Variables para determinar el tiempo de ejecución
+        tInicio = System.currentTimeMillis(); //Tomamos la hora en que inicio el algoritmo y la almacenamos en la variable inicio
+
         back.start(0,false,new ArrayList<Boolean>());
         back.start(0,true,new ArrayList<Boolean>());
 
+        tFin = System.currentTimeMillis(); //Tomamos la hora en que finalizó el algoritmo y la almacenamos en la variable T
+        tiempo = tFin - tInicio; //Calculamos los milisegundos de diferencia
+        System.out.println("Tiempo de ejecución en milisegundos: " + tiempo); //Mostramos en pantalla el tiempo de ejecución en milisegundos
         System.out.println("costo minimo :\t"+comp.bestcandidato);
         System.out.println("best vector :\t"+comp.bestvector);
         //-------------------------------------------------------------------------------

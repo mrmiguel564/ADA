@@ -28,21 +28,17 @@ public boolean estaraTodos(ArrayList<Boolean> vectorFactible){
 }
 
 public boolean esFactible(ArrayList<Boolean> vectorFactible){ //veremos si la solucion es factible
-	boolean factible=true;												// para la matriz son: i filas (restricciones) , j columnas (variables)
-	if(vectorFactible.size()>nMatriz){
-		return false;
-
-	}
+								// para la matriz son: i filas (restricciones) , j columnas (variables)
 	for(int i=0;i<nRestri;i++){
 		int count=0;
 			for(int j=0;j<vectorFactible.size();j++){
 				if(restriciones[i][j]&& !(boolean)vectorFactible.get(j))count=count+1;
 			}	
-			if(count==arradidad[i])factible=false; 	// si se encuentra una restricion no satifecha, no es solucion y no lo sera nunca							
+			if(count==arradidad[i])return false; 	// si se encuentra una restricion no satifecha, no es solucion y no lo sera nunca							
 		}
 	//if(factible)System.out.println("F :"+ vectorFactible);
 	//if(!factible)System.out.println("N :"+ vectorFactible);
-	return factible; //si termine el ciclo, significa que fue factible para todas las restricciones
+	return true; //si termine el ciclo, significa que fue factible para todas las restricciones
 }
 
 	public void comparar(ArrayList<Boolean> vectorFactible){ // retornaremos la solucion minima del vector dado
