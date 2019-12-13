@@ -51,14 +51,19 @@ public  class Comparador{
 		}
 		return true; //se retorna el estado de factibilidad
 	}
-
-	public synchronized void comparar(ArrayList<Boolean> vectorFactible){ // retornaremos la solucion minima del vector dado
-		int total=0;
+	public void comparar(ArrayList<Boolean> vectorFactible){
+			
+			int total=0;
 		for (int i=0;i<vectorFactible.size();i++){
 			if(vectorFactible.get(i)){ 		//si el valor es true (1) seria costo*1 osea costo
 				total=total+costo[i]; //voy obteniendo el valor
 			}
-		} 
+		}
+		comprobaryguardar(ArrayList<Boolean> vectorFactible);
+	
+	}
+
+	public synchronized void comprobaryguardar(ArrayList<Boolean> vectorFactible){ //no retornaremos la solucion minima del vector dado
 		
 		if(total<this.bestCandidato){ //comparo el total con mi candidato actual
 			imprimirArray(vectorFactible);	

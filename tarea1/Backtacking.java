@@ -10,14 +10,14 @@ public class Backtacking extends Thread {
         this.estadoInicial=estadoInicial;
     }
     public void run(){
-        Backtacking(2,false,new ArrayList<Boolean>(estadoInicial));
-        Backtacking(2,true,new ArrayList<Boolean>(estadoInicial));
+        Backtacking(3,false,new ArrayList<Boolean>(estadoInicial));
+        Backtacking(3,true,new ArrayList<Boolean>(estadoInicial));
 
     }
 
-    public void Backtacking(int etapa, boolean combinacion, ArrayList<Boolean> solucion){
+    public void Backtacking(boolean combinacion, ArrayList<Boolean> solucion){
 
-        solucion.add(etapa,combinacion);
+        solucion.add(combinacion);
         if(comp.esFactible(solucion)){ // se pregunta si, es factible hasta ahora?
             if(comp.estaraTodos(solucion)){  //esta completo el vector?
                 //System.out.println(solucion);

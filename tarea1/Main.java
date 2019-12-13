@@ -18,21 +18,33 @@ public class Main{
 
 			tInicio = System.currentTimeMillis(); //Tomamos la hora en que inicio el algoritmo y la almacenamos en la variable inicio
 			
-			Thread hilo1 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(false, false)));
-			Thread hilo2 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(false, true)));
-			Thread hilo3 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(true, false)));
-			Thread hilo4 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(true, true)));
+			Thread hilo1 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(false, false,true)));
+			Thread hilo2 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(false, true,true)));
+			Thread hilo3 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(true, false,true)));
+			Thread hilo4 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(true, true,true)));
+			Thread hilo5 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(false, false,false)));
+			Thread hilo6 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(false, true,false)));
+			Thread hilo7 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(true, false,false)));
+			Thread hilo8 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(true, true,false)));
 
 			hilo1.start();
 			hilo2.start();
 			hilo3.start();
 			hilo4.start();
+			hilo5.start();
+			hilo6.start();
+			hilo7.start();
+			hilo8.start();
 
 		try{
   			hilo1.join();
   			hilo2.join();
   			hilo3.join();
   			hilo4.join();	
+			hilo5.join();
+  			hilo6.join();
+  			hilo7.join();
+  			hilo8.join();	
 
 		}catch(InterruptedException ie){}
 
