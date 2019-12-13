@@ -3,82 +3,52 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-public class Main {
-		
-    public static void main(String[] args) {
-        boolean ayuda=false; //estado para los printf
 
-        int numeroEntero, sumaInt = 0;
-        double numeroDouble, sumaDouble = 0;
 
-        File f = new File("scp41.txt");
+public class Main{
+	public static void main(String[] args) {
+		Lector l= new Lector(); //leera el archivo y obtendra la aridad, costos, restricciones, numero de restricciones y numero de variables
+		if(l.readFile()){ //si todo salio bien
+			
+			Comparador comp = new Comparador(l.getAridad(),l.getCosto(),l.getRestricciones(),l.getNRestri(),l.getNMatriz());
 
-        try  (Scanner entrada = new Scanner(f)) {
-        	int nRestri = entrada.nextInt();
-          if(ayuda){System.out.println("cantidad de restriciones: "+nRestri);} //retricciones 5
-        	int nMatriz = entrada.nextInt();
-          if(ayuda){System.out.println("largo del vector: "+nMatriz);}  //variables
+			long tInicio, tFin, tiempo; //Variables para determinar el tiempo de ejecución
 
-          //se hará una matriz de 5 filas y 6 restricc
-        	boolean restriciones[][]= new boolean[nRestri][nMatriz]; //matriz booleana
+			tInicio = System.currentTimeMillis(); //Tomamos la hora en que inicio el algoritmo y la almacenamos en la variable inicio
+			
+			Thread hilo1 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(false, false)));
+			Thread hilo2 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(false, true)));
+			Thread hilo3 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(true, false)));
+			Thread hilo4 = new Backtacking(comp,new ArrayList<Boolean>(Arrays.asList(true, true)));
 
-        	int costo[]= new int [nMatriz]; //almacena los costos 65 55 60 45 40 50                   
-              if(ayuda)System.out.print("el vector costo es: [");
-            for(int i=0;i<nMatriz;i++) { //relleno los costos
-                
-               	costo[i] = entrada.nextInt(); 
-                if(ayuda){System.out.print(costo[i]+" ");}
-  			    }
-            if(ayuda)System.out.println("]");
-        int arradidad[]= new int[nRestri];
-  			for(int i=0;i<nRestri;i++) {  //ultima para tomar las restricciones
-          arradidad[i]=entrada.nextInt(); // sirve para detenernos en cada restriccion
-          if(ayuda)System.out.println("aridad: "+arradidad[i]);
-               
-          for(int j=0;j<arradidad[i];j++) {
-            int wea = entrada.nextInt(); //guarda las variables activas en las restricciones
-            if(ayuda)System.out.print(" "+wea);
-              restriciones[i][wea-1]=true; // nuestras restriciones
-  				  }
-            if(ayuda)System.out.println();
-  			}
+			hilo1.start();
+			hilo2.start();
+			hilo3.start();
+			hilo4.start();
 
-        Comparador comp = new Comparador(arradidad,costo,restriciones,nRestri,nMatriz);
-     //   if(comp.esFactible(temp))System.out.println("pichulita");
-        Backtacking back = new Backtacking(nMatriz, comp);
-        back.start(0,false,new ArrayList<Boolean>());
-        back.start(0,true,new ArrayList<Boolean>());
+		try{
+  			hilo1.join();
+  			hilo2.join();
+  			hilo3.join();
+  			hilo4.join();	
 
-        System.out.println("costo minimo :\t"+comp.bestcandidato);
-        System.out.println("best vector :\t"+comp.bestvector);
-        //-------------------------------------------------------------------------------
-        // mostrarRestricciones(restriciones,nRestri,nMatriz);
+		}catch(InterruptedException ie){}
 
-        } catch (FileNotFoundException e) {
-            System.out.println(e.toString());
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
-    }
 
-    public static void mostrarRestricciones(boolean restriciones[][],int nRestri,int nMatriz){
-      for (int i=0;i<nRestri;i++) {
-        for (int j=0;j<nMatriz;j++) {
-          System.out.print(restriciones[i][j]);
-          System.out.print(" ");
-        }
-        System.out.println();
-      }
-    }
-    
+			tFin = System.currentTimeMillis(); //Tomamos la hora en que finalizó el algoritmo y la almacenamos en la variable T
+			tiempo = tFin - tInicio; //Calculamos los milisegundos de diferencia
+			System.out.println("Tiempo de ejecucion en milisegundos: " + tiempo); //Mostramos en pantalla el tiempo de ejecución en milisegundos
+			
 
-  public static void imprimirArray (ArrayList lista){
-   
-        for(int i=0;i<lista.size();i++){
-            System.out.print("\t"+lista.get(i));
-        }
-        System.out.println();
-    }
+			System.out.println("Costo minimo :\t"+ comp.getBestCandidato());
+			System.out.println("Best vector :\t"+ comp.getBestVector());
+			 
 
+			
+		}else{  
+			System.out.println("Hubo un problema");
+		}
+	}
 }
